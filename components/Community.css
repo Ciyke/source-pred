@@ -1,0 +1,47 @@
+.community {
+  padding: 100px 24px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.community__orb {
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+}
+.community__orb--left  { background: rgba(88,101,242,.12); left: -150px; top: 50%; transform: translateY(-50%); }
+.community__orb--right { background: rgba(38,165,228,.1);  right:-150px; top: 50%; transform: translateY(-50%); }
+
+.community__container { max-width: 900px; margin: 0 auto; position: relative; }
+
+.community__counters {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 20px;
+  margin-bottom: 3rem;
+}
+@media (max-width: 700px) { .community__counters { grid-template-columns: repeat(2,1fr); } }
+
+@media (max-width: 600px) {
+  .community__ctas { flex-direction: column; align-items: stretch; }
+  .community__btn { min-width: unset; width: 100%; justify-content: center; }
+}
+
+.community__counter { padding: 24px 16px; text-align: center; }
+.community__counter-num {
+  display: block;
+  font-family: 'Orbitron', monospace;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.community__counter-num--cyan   { color: #00f5ff; text-shadow: 0 0 20px rgba(0,245,255,.4); }
+.community__counter-num--purple { color: #8b5cf6; text-shadow: 0 0 20px rgba(139,92,246,.4); }
+.community__counter-num--green  { color: #00ff88; text-shadow: 0 0 20px rgba(0,255,136,.4); }
+.community__counter-num--pink   { color: #ff0080; text-shadow: 0 0 20px rgba(255,0,128,.4); }
+.community__counter-label { font-size: .78rem; color: #64748b; text-transform: uppercase; letter-spacing: .1em; }
+
+.community__ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.community__btn { min-width: 180px; }

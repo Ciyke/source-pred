@@ -1,0 +1,13 @@
+.comm-wall {
+  margin: 48px 0;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.comm-wall__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+}
