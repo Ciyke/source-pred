@@ -25,7 +25,7 @@ export default function WalletButton({ wallet }) {
 
   if (address) {
     return (
-      <button className="wallet-btn wallet-btn--connected" disabled>
+      <button className="wallet-btn wallet-btn--connected" disabled title={address}>
         <span className="wallet-btn__dot" />
         {short(address)}
       </button>
@@ -33,8 +33,6 @@ export default function WalletButton({ wallet }) {
   }
 
   function handleConnectClick() {
-    // Only one wallet detected (or none via EIP-6963, e.g. an older
-    // extension) — connect directly, falling back to window.ethereum.
     if (wallets.length <= 1) {
       connect(wallets[0]?.provider)
     } else {
@@ -42,15 +40,20 @@ export default function WalletButton({ wallet }) {
     }
   }
 
-  function pick(wallet) {
+  function pick(w) {
     setPickerOpen(false)
-    connect(wallet.provider)
+    connect(w.provider)
   }
 
   return (
     <div className="wallet-btn-wrap">
-      <button className="wallet-btn wallet-btn--connect" onClick={handleConnectClick} disabled={status === 'connecting'}>
-        <span>⬡</span> {status === 'connecting' ? 'Connecting…' : 'Connect Wallet'}
+      <button className="wallet-btn wallet-btn--connect wallet-btn--icon-only" onClick={handleConnectClick} disabled={status === 'connecting'} aria-label="Connect wallet" title="Connect wallet">
+        <svg className="wallet-btn__purse-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M2 7a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V7Z" />
+          <path d="M2 10h20" />
+          <path d="M16 10a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-1a2 2 0 0 1 2-2h2Z" />
+          <circle cx="16" cy="12.5" r="0.9" fill="currentColor" stroke="none" />
+        </svg>
       </button>
       {pickerOpen && (
         <div className="wallet-picker">

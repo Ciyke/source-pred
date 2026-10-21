@@ -3,7 +3,6 @@ import { predictionsClient } from '../client/index.js'
 import TeamRoster from './TeamRoster.jsx'
 import BetForm from './BetForm.jsx'
 import ClaimPanel from './ClaimPanel.jsx'
-import OddsChart from './OddsChart.jsx'
 
 export default function RoomDetail({ roomId, onBack, wallet }) {
   const { address } = wallet
@@ -50,8 +49,6 @@ export default function RoomDetail({ roomId, onBack, wallet }) {
         {' · '}Pool A: {room.poolTeam0} USDC · Pool B: {room.poolTeam1} USDC
       </p>
       {joinError && <p className="bet-form__error" style={{ marginBottom: 12 }}>{joinError}</p>}
-
-      <div className="room-detail__chart"><OddsChart /></div>
 
       <div className="room-detail__grid">
         <TeamRoster room={room} myTeam={myStatus.team} address={address} onJoin={handleJoin} joining={joining} />

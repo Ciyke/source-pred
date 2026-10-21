@@ -23,7 +23,7 @@ export default function RoomList({ onSelect }) {
   if (rooms.length === 0) return <div className="empty-state">No matchrooms yet — check back soon.</div>
 
   return (
-    <div className="room-grid">
+    <div className="room-rows">
       {rooms.map((room) => (
         <RoomCard key={room.id} room={room} onSelect={onSelect} />
       ))}

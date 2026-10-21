@@ -52,6 +52,14 @@
   box-shadow: 0 0 8px #00ff88;
 }
 
+.wallet-btn--icon-only {
+  padding: 9px 12px;
+  min-width: 42px;
+  justify-content: center;
+  border-radius: 10px;
+}
+.wallet-btn__purse-icon { display: block; }
+
 .wallet-btn__error {
   font-size: .7rem;
   color: var(--neon-pink);

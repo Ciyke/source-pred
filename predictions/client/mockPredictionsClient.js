@@ -161,9 +161,6 @@ export const mockPredictionsClient = assertClientShape({
     const room = requireRoom(roomId)
     if (room.state !== 'open') throw new Error('Betting is closed for this room')
     if (team !== 0 && team !== 1) throw new Error('Invalid team')
-    if (playersFor(room.id).has(address)) {
-      throw new Error('Players in this matchroom cannot bet on it (integrity rule)')
-    }
     const existing = betsFor(room.id).get(address)
     if (existing && existing.team !== team) throw new Error('Already backing the other team in this room')
     if (!existing && amountUsdc < room.minBet) throw new Error(`Minimum bet is ${room.minBet} USDC`)
@@ -206,13 +203,12 @@ export const mockPredictionsClient = assertClientShape({
 
   async getSupportedDepositChains() {
     await delay(100)
-    // Mirrors the on-chain adapter registry planned for Phase B. Only Arc is
-    // listed for now — it's the one chain with a real contract behind it
-    // (TestMarket on Arc Testnet); showing Avalanche/Solana here too, before
-    // their CCTP adapters exist, just invites users to pick a chain that
-    // silently does nothing. Adding them back later is appending to this list.
     return [
-      { chainId: 'arc', name: 'Arc', enabled: true },
+      { chainId: 'sol',        name: '$SOL',            enabled: true, kind: 'native' },
+      { chainId: 'avax',       name: '$AVAX',           enabled: true, kind: 'native' },
+      { chainId: 'mon',        name: '$MON',            enabled: true, kind: 'native' },
+      { chainId: 'usdc-sol',   name: 'USDC on Sol',     enabled: true, kind: 'token'  },
+      { chainId: 'usdc-monad', name: 'USDC on Monad',   enabled: true, kind: 'token'  },
     ]
   },
 

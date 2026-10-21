@@ -33,11 +33,6 @@ export default function TeamRoster({ room, myTeam, address, onJoin, joining }) {
         {teamBlock(room.team0, 0, 'A')}
         {teamBlock(room.team1, 1, 'B')}
       </div>
-      {myTeam != null && (
-        <p className="bet-form__note" style={{ marginTop: '12px' }}>
-          You've joined Team <span style={{ color: myTeam === 0 ? 'var(--neon-red)' : 'var(--neon-green)', fontWeight: 700 }}>{myTeam === 0 ? 'A' : 'B'}</span> — per the integrity rule, you can't also bet on this room.
-        </p>
-      )}
     </div>
   )
 }

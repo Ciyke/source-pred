@@ -1,15 +1,14 @@
 import { useState } from 'react'
 import { predictionsClient } from '../client/index.js'
 
-export default function BetForm({ room, address, myTeam, myBet, onPlaced }) {
+export default function BetForm({ room, address, myBet, onPlaced }) {
   const [team, setTeam] = useState(myBet?.team ?? null)
   const [amount, setAmount] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(null)
 
-  const blockedByIntegrityRule = myTeam != null
-  const disabled = room.state !== 'open' || !address || blockedByIntegrityRule
+  const disabled = room.state !== 'open' || !address
 
   async function submit(e) {
     e.preventDefault()
@@ -29,15 +28,6 @@ export default function BetForm({ room, address, myTeam, myBet, onPlaced }) {
     } finally {
       setBusy(false)
     }
-  }
-
-  if (blockedByIntegrityRule) {
-    return (
-      <div className="panel">
-        <h3>Place a Prediction</h3>
-        <p className="bet-form__note">Players in this matchroom can't bet on it (integrity rule).</p>
-      </div>
-    )
   }
 
   return (
